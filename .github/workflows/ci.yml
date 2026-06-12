@@ -1,0 +1,15 @@
+name: CI — Node.js
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  security:
+    uses: CD20012001/central-workflow-delta/.github/workflows/snyk-sca.yml@main
+    with:
+      install-command: npm install
+      severity-threshold: high
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
